@@ -184,6 +184,11 @@ struct rtcp_stats {
 		int lost;
 		uint32_t jit;
 	} rx;
+	struct {
+		uint32_t mean;
+		uint32_t min;
+		uint32_t max;
+	} rtt;
 };
 
 struct sa;
