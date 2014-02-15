@@ -603,6 +603,16 @@ int rtcp_stats(struct rtp_sock *rs, uint32_t ssrc, struct rtcp_stats *stats)
 	stats->tx.lost = mbr->cum_lost;
 	stats->tx.jit  = mbr->jit;
 
+	if (stats->rtt.max < mbr->rtt) {
+		stats->rtt.max = mbr->rtt;
+        }
+	if (stats->rtt.min > mbr->rtt) {
+		stats->rtt.min = mbr->rtt;
+        }
+
+	stats->rtt.mean += mbr->rtt;
+
+
 	if (!mbr->s) {
 		memset(&stats->rx, 0, sizeof(stats->rx));
 		return 0;
