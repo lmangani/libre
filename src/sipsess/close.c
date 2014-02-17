@@ -66,7 +66,7 @@ int sipsess_bye(struct sipsess *sess, bool reset_ls)
 		sip_loopstate_reset(&sess->ls);
 
 
-        //str_dup(sess->sip.xrtpstats, sess->xrtpstats);        
+	/* Inject X-RTP-Stat header */
 	if (sess->xrtpstats) {
         	snprintf(tmp, 256, "X-RTP-Stat: %s\r\nContent-Length: 0\r\n\r\n", sess->xrtpstats);
 	}
