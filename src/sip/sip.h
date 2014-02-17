@@ -17,6 +17,7 @@ struct sip {
 	struct dnsc *dnsc;
 	struct stun *stun;
 	char *software;
+	char *xrtpstats;
 	sip_exit_h *exith;
 	void *arg;
 	bool closing;

@@ -231,3 +231,12 @@ struct sip_dialog *sipsess_dialog(const struct sipsess *sess)
 {
 	return sess ? sess->dlg : NULL;
 }
+
+
+/* x-rtp stats */
+int sipsess_xrtpstat(struct sipsess *sess, char *stats) {
+
+     snprintf(sess->xrtpstats, 256, stats);
+     
+     return 1;
+}

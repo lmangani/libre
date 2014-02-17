@@ -57,15 +57,31 @@ static void bye_resp_handler(int err, const struct sip_msg *msg, void *arg)
 
 int sipsess_bye(struct sipsess *sess, bool reset_ls)
 {
+        char tmp[256];
+
 	if (sess->req)
 		return EPROTO;
 
 	if (reset_ls)
 		sip_loopstate_reset(&sess->ls);
 
+
+        //str_dup(sess->sip.xrtpstats, sess->xrtpstats);        
+	if (sess->xrtpstats) {
+        	snprintf(tmp, 256, "Content-Length: 0\r\nX-RTP-Stat: %s\r\n\r\n", sess->xrtpstats);
+        	snprintf(tmp, 256, "X-RTP-Stat: %s\r\nContent-Length: 0\r\n\r\n", sess->xrtpstats);
+	}
+
 	return sip_drequestf(&sess->req, sess->sip, true, "BYE",
 			     sess->dlg, 0, sess->auth,
 			     NULL, bye_resp_handler, sess,
-			     "Content-Length: 0\r\n"
+			     tmp);
+/*
+	return sip_drequestf(&sess->req, sess->sip, true, "BYE",
+			     sess->dlg, 0, sess->auth,
+			     NULL, bye_resp_handler, sess,
+			     "Content-Length: 0\r\n",
 			     "\r\n");
+*/
+			   
 }

@@ -138,6 +138,8 @@ int source_calc_lost(const struct rtp_source *s)
 
 	lost = expected - s->received;
 
+	/* QXIP: SEQ Jump tolerance */
+
 	/* Clamp at 24 bits */
 	if (lost > 0x7fffff)
 		lost = 0x7fffff;

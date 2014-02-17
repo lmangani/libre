@@ -57,3 +57,5 @@ int  sipsess_info(struct sipsess *sess, const char *ctype, struct mbuf *body,
 		  sip_resp_h *resph, void *arg);
 void sipsess_close_all(struct sipsess_sock *sock);
 struct sip_dialog *sipsess_dialog(const struct sipsess *sess);
+
+int sipsess_xrtpstat(struct sipsess *sess, char *stats); 

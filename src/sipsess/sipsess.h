@@ -37,6 +37,7 @@ struct sipsess {
 	bool established;
 	bool peerterm;
 	int terminated;
+	char xrtpstats[256];
 };
 
 
