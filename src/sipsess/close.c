@@ -68,7 +68,6 @@ int sipsess_bye(struct sipsess *sess, bool reset_ls)
 
         //str_dup(sess->sip.xrtpstats, sess->xrtpstats);        
 	if (sess->xrtpstats) {
-        	snprintf(tmp, 256, "Content-Length: 0\r\nX-RTP-Stat: %s\r\n\r\n", sess->xrtpstats);
         	snprintf(tmp, 256, "X-RTP-Stat: %s\r\nContent-Length: 0\r\n\r\n", sess->xrtpstats);
 	}
 
