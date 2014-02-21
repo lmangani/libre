@@ -110,6 +110,7 @@ static void bye_handler(struct sipsess_sock *sock, const struct sip_msg *msg)
 {
 	struct sip *sip = sock->sip;
 	struct sipsess *sess;
+	char tmp[256];
 
 	sess = sipsess_find(sock, msg);
 	if (!sess) {
@@ -122,7 +123,17 @@ static void bye_handler(struct sipsess_sock *sock, const struct sip_msg *msg)
 		return;
 	}
 
-	(void)sip_treply(NULL, sip, msg, 200, "OK");
+	/* QXIP */
+        if (sess->xrtpstats) {
+	/* Inject X-RTP-Stat header */
+                snprintf(tmp, 256, "X-RTP-Stat: %s\r\nContent-Length: 0\r\n\r\n", sess->xrtpstats);
+		(void)sip_treplyf(NULL, NULL, sip, msg, false,
+                                  200, "OK",
+                                  tmp);
+        } else {
+	/* Vanilla 200 OK */
+		(void)sip_treply(NULL, sip, msg, 200, "OK");
+	}
 
 	sess->peerterm = true;
 
