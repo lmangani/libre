@@ -124,7 +124,7 @@ static void bye_handler(struct sipsess_sock *sock, const struct sip_msg *msg)
 	}
 
 	/* QXIP */
-        if (sess->xrtpstats) {
+        if (sess->xrtpstats && !sess->xrtpstats[0] == '\0') {
 	/* Inject X-RTP-Stat header */
 		(void)sip_treplyf(NULL, NULL, sip, msg, false,
                                   200, "OK",

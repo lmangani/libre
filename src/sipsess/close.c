@@ -65,7 +65,7 @@ int sipsess_bye(struct sipsess *sess, bool reset_ls)
 	if (reset_ls)
 		sip_loopstate_reset(&sess->ls);
 
-	if (sess->xrtpstats) {
+	if (sess->xrtpstats && !sess->xrtpstats[0] == '\0') {
 	/* BYE with X-RTP-Stat header */
 		return sip_drequestf(&sess->req, sess->sip, true, "BYE",
 			     sess->dlg, 0, sess->auth,
