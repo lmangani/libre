@@ -175,19 +175,20 @@ struct rtcp_msg {
 /** RTCP Statistics */
 struct rtcp_stats {
 	struct {
-		uint32_t sent;
-		int lost;
-		uint32_t jit;
+		uint32_t sent;    /**< Tx RTP Packets */
+		int lost;        /**< Tx RTP Packets Lost */
+		uint32_t jit;   /**< Tx Inter-arrival Jitter */
 	} tx;
 	struct {
-		uint32_t sent;
-		int lost;
-		uint32_t jit;
+		uint32_t sent;   /**< Rx RTP Packets */
+		int lost;	/**< Rx RTP Packets Lost */
+		uint32_t jit;  /**< Rx Inter-Arrival Jitter */
 	} rx;
 	struct {
-		uint64_t mean;
-		uint32_t min;
-		uint32_t max;
+		uint64_t mean;  /**< Mean Round-Trip Time in [us] */
+		uint32_t min;  /**< Minimum Round-Trip Time in [us] */
+		uint32_t max; /**< Maximum Round-Trip Time in [us] */
+		uint32_t tot; /**< Total number of RTCP SR Rx */
 	} rtt;
 };
 
