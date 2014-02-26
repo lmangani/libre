@@ -588,6 +588,18 @@ const struct sa *sdp_media_raddr(const struct sdp_media *m)
 }
 
 /**
+ * Get the local port number of an SDP Media line
+ *
+ * @param m SDP Media line
+ *
+ * @return Local port number
+ */
+uint16_t sdp_media_lport(const struct sdp_media *m)
+{
+	return m ? sa_port(&m->laddr) : 0;
+}
+
+/**
  * Get the local network address of an SDP Media line
  *
  * @param m SDP Media line

@@ -104,6 +104,7 @@ int  sdp_media_set_lattr(struct sdp_media *m, bool replace,
 void sdp_media_del_lattr(struct sdp_media *m, const char *name);
 const char *sdp_media_proto(const struct sdp_media *m);
 uint16_t sdp_media_rport(const struct sdp_media *m);
+uint16_t sdp_media_lport(const struct sdp_media *m);
 const struct sa *sdp_media_raddr(const struct sdp_media *m);
 const struct sa *sdp_media_laddr(const struct sdp_media *m);
 void sdp_media_raddr_rtcp(const struct sdp_media *m, struct sa *raddr);

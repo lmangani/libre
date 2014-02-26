@@ -216,6 +216,10 @@ static int media_decode(struct sdp_media **mp, struct sdp_session *sess,
 
 	*mp = m;
 
+	/* qxip hack, force update m->laddr */
+	sa_set_port(&sess->laddr, sdp_media_lport(m) );
+	m->laddr = sess->laddr;
+
 	return 0;
 }
 
