@@ -76,7 +76,7 @@ int sipsess_bye(struct sipsess *sess, bool reset_ls)
 		return sip_drequestf(&sess->req, sess->sip, true, "BYE",
 			     sess->dlg, 0, sess->auth,
 			     NULL, bye_resp_handler, sess,
-			     "Content-Length: 0\r\n",
+			     "Content-Length: 0\r\n"
 			     "\r\n");
 	}
 
